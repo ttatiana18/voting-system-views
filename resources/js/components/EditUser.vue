@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label>Photo</label>
-                        <input type="text" class="form-control" v-model="user.photo">
+                        <input type="file" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Phone number</label>
@@ -43,7 +43,15 @@
     export default {
         data() {
             return {
-                user: {}
+                user: {
+                    name : '',
+                    email : '',
+                    document : '',
+                    birth_date : '',
+                    photo: 'qqch',
+                    phone_number: '',
+                    password: '',
+                }
             }
         },
         created() {
@@ -58,7 +66,7 @@
                 axios
                     .patch(`http://voting-system.test/api/usuarios/${this.$route.params.id}`, this.user)
                     .then((res) => {
-                        this.$router.push({ name: 'home' });
+                        this.$router.push({ name: 'users' });
                     });
             }
         }

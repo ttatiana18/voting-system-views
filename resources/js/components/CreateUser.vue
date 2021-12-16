@@ -48,7 +48,7 @@
                     email : '',
                     document : '',
                     birth_date : '',
-                    photo: 'aa',
+                    photo: 'qqch',
                     phone_number: '',
                     password: '',
                 }

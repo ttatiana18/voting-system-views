@@ -14,12 +14,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="user in candidates" :key="user.id">
-                <td>{{ user.document }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.birth_date }}</td>
-                <td>{{ user.phone_number }}</td>
+            <tr v-for="user in candidates" :key="user[0].id">
+                <td>{{ user[0].document }}</td>
+                <td>{{ user[0].name }}</td>
+                <td>{{ user[0].email }}</td>
+                <td>{{ user[0].birth_date }}</td>
+                <td>{{ user[0].phone_number }}</td>
             </tr>
             </tbody>
         </table>
@@ -31,7 +31,7 @@
         data() {
             return {
                 candidates: {},
-                cedula:3232323,
+                cedula:123456,
             }
         },
         created() {

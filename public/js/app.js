@@ -5819,7 +5819,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      party: {},
+      party: {
+        name: '',
+        nit: '',
+        address: '',
+        picture: 'none',
+        phone_number: '',
+        admin_id: ''
+      },
       users: {}
     };
   },
@@ -5909,7 +5916,7 @@ __webpack_require__.r(__webpack_exports__);
         email: '',
         document: '',
         birth_date: '',
-        photo: 'aa',
+        photo: 'qqch',
         phone_number: '',
         password: ''
       }
@@ -6003,7 +6010,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.patch("http://voting-system.test/api/candidatos/".concat(this.$route.params.id), this.candidate).then(function (res) {
         _this2.$router.push({
-          name: 'home'
+          name: 'candidates'
         });
       });
     }
@@ -6023,6 +6030,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -6052,10 +6061,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  // OR register locally
+  components: {
+    Multiselect: (vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default())
+  },
   data: function data() {
     return {
-      election: {}
+      election: {
+        name: '',
+        description: '',
+        start_date: '',
+        candidates: ''
+      },
+      users: {},
+      options: []
     };
   },
   created: function created() {
@@ -6064,14 +6089,26 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("http://voting-system.test/api/elecciones/".concat(this.$route.params.id)).then(function (res) {
       _this.election = res.data;
     });
+    axios.get('http://voting-system.test/api/usuarios2').then(function (response) {
+      _this.users = response.data.users;
+      _this.options = response.data.users;
+    });
   },
   methods: {
+    addTag: function addTag(newTag) {
+      var tag = {
+        id: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+        name: newTag
+      };
+      this.options.push(tag);
+      this.election.candidates.push(tag);
+    },
     updateElection: function updateElection() {
       var _this2 = this;
 
       axios.patch("http://voting-system.test/api/elecciones/".concat(this.$route.params.id), this.election).then(function (res) {
         _this2.$router.push({
-          name: 'home'
+          name: 'elections'
         });
       });
     }
@@ -6136,7 +6173,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      party: {},
+      party: {
+        name: '',
+        nit: '',
+        address: '',
+        picture: 'none',
+        phone_number: '',
+        admin_id: ''
+      },
       users: {}
     };
   },
@@ -6156,7 +6200,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.patch("http://voting-system.test/api/partidos/".concat(this.$route.params.id), this.party).then(function (res) {
         _this2.$router.push({
-          name: 'home'
+          name: 'parties'
         });
       });
     }
@@ -6220,7 +6264,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      user: {}
+      user: {
+        name: '',
+        email: '',
+        document: '',
+        birth_date: '',
+        photo: 'qqch',
+        phone_number: '',
+        password: ''
+      }
     };
   },
   created: function created() {
@@ -6236,7 +6288,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.patch("http://voting-system.test/api/usuarios/".concat(this.$route.params.id), this.user).then(function (res) {
         _this2.$router.push({
-          name: 'home'
+          name: 'users'
         });
       });
     }
@@ -6624,7 +6676,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       candidates: {},
-      cedula: 3232323
+      cedula: 123456
     };
   },
   created: function created() {
@@ -51880,15 +51932,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _EditElection_vue_vue_type_template_id_5d4856ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditElection.vue?vue&type=template&id=5d4856ae& */ "./resources/js/components/EditElection.vue?vue&type=template&id=5d4856ae&");
 /* harmony import */ var _EditElection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditElection.vue?vue&type=script&lang=js& */ "./resources/js/components/EditElection.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _EditElection_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _EditElection_vue_vue_type_template_id_5d4856ae___WEBPACK_IMPORTED_MODULE_0__.render,
   _EditElection_vue_vue_type_template_id_5d4856ae___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -54350,31 +54404,7 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Picture")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.party.picture,
-                    expression: "party.picture",
-                  },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.party.picture },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.party, "picture", $event.target.value)
-                  },
-                },
-              }),
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Phone number")]),
@@ -54470,7 +54500,18 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Picture")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "file" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -54978,23 +55019,52 @@ var render = function () {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.election.end_date,
-                    expression: "election.end_date",
+                    value: _vm.election.start_date,
+                    expression: "election.start_date",
                   },
                 ],
                 staticClass: "form-control",
-                attrs: { type: "date" },
-                domProps: { value: _vm.election.end_date },
+                attrs: { type: "date", readonly: "" },
+                domProps: { value: _vm.election.start_date },
                 on: {
                   input: function ($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.election, "end_date", $event.target.value)
+                    _vm.$set(_vm.election, "start_date", $event.target.value)
                   },
                 },
               }),
             ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", [_vm._v("User")]),
+                _vm._v(" "),
+                _c("multiselect", {
+                  attrs: {
+                    "tag-placeholder": "Add this as new tag",
+                    placeholder: "Search or add a tag",
+                    label: "name",
+                    "track-by": "id",
+                    options: _vm.options,
+                    multiple: true,
+                    taggable: true,
+                  },
+                  on: { tag: _vm.addTag },
+                  model: {
+                    value: _vm.election.candidates,
+                    callback: function ($$v) {
+                      _vm.$set(_vm.election, "candidates", $$v)
+                    },
+                    expression: "election.candidates",
+                  },
+                }),
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "button",
@@ -55124,31 +55194,7 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Picture")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.party.picture,
-                    expression: "party.picture",
-                  },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.party.picture },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.party, "picture", $event.target.value)
-                  },
-                },
-              }),
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Phone number")]),
@@ -55244,7 +55290,18 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Picture")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "file" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -55387,31 +55444,7 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Photo")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.user.photo,
-                    expression: "user.photo",
-                  },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.user.photo },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.user, "photo", $event.target.value)
-                  },
-                },
-              }),
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
               _c("label", [_vm._v("Phone number")]),
@@ -55476,7 +55509,18 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Photo")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "file" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -55884,16 +55928,16 @@ var render = function () {
       _c(
         "tbody",
         _vm._l(_vm.candidates, function (user) {
-          return _c("tr", { key: user.id }, [
-            _c("td", [_vm._v(_vm._s(user.document))]),
+          return _c("tr", { key: user[0].id }, [
+            _c("td", [_vm._v(_vm._s(user[0].document))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.name))]),
+            _c("td", [_vm._v(_vm._s(user[0].name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.email))]),
+            _c("td", [_vm._v(_vm._s(user[0].email))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.birth_date))]),
+            _c("td", [_vm._v(_vm._s(user[0].birth_date))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(user.phone_number))]),
+            _c("td", [_vm._v(_vm._s(user[0].phone_number))]),
           ])
         }),
         0

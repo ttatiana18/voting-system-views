@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label>Picture</label>
-                        <input type="text" class="form-control" v-model="party.picture">
+                        <input type="file" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Phone number</label>
@@ -44,7 +44,14 @@
     export default {
         data() {
             return {
-                party: {},
+                party: {
+                    name:'',
+                    nit:'',
+                    address:'',
+                    picture:'none',
+                    phone_number:'',
+                    admin_id:'',
+                },
                 users:{},
             }
         },

@@ -18,7 +18,11 @@
                     </div>
                     <div class="form-group">
                         <label>End Date</label>
-                        <input type="date" class="form-control" v-model="election.end_date">
+                        <input type="date" class="form-control" v-model="election.start_date" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>User</label>
+                        <multiselect v-model="election.candidates" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
@@ -28,10 +32,22 @@
 </template>
  
 <script>
-    export default {
+import Multiselect from 'vue-multiselect'
+
+  export default {
+    // OR register locally
+    components: { Multiselect },
         data() {
             return {
-                election: {}
+                election: {
+                    name: '',
+                    description: '',
+                    start_date: '',
+                    candidates: '',
+                },
+                users:{},
+                options:[        
+                ],
             }
         },
         created() {
@@ -40,15 +56,30 @@
                 .then((res) => {
                     this.election = res.data;
                 });
+            axios
+                .get('http://voting-system.test/api/usuarios2')
+                .then(response => {
+                    this.users = response.data.users;
+                    this.options = response.data.users;
+                });
         },
         methods: {
+            addTag (newTag) {
+                const tag = {
+                    id: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000)),
+                    name: newTag,
+                }
+                this.options.push(tag)
+                this.election.candidates.push(tag)
+            },
             updateElection() {
                 axios
                     .patch(`http://voting-system.test/api/elecciones/${this.$route.params.id}`, this.election)
                     .then((res) => {
-                        this.$router.push({ name: 'home' });
+                        this.$router.push({ name: 'elections' });
                     });
             }
         }
     }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

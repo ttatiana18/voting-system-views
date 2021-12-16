@@ -60,7 +60,7 @@
                 axios
                     .patch(`http://voting-system.test/api/candidatos/${this.$route.params.id}`, this.candidate)
                     .then((res) => {
-                        this.$router.push({ name: 'home' });
+                        this.$router.push({ name: 'candidates' });
                     });
             }
         }
