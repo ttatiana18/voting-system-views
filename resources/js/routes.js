@@ -23,6 +23,7 @@ import Report6 from './components/Report6.vue';
 import Report7 from './components/Report7.vue';
 import Report8 from './components/Report8.vue';
 import VoteLogin from './components/VoteLogin.vue';
+import Vote from './components/Vote.vue';
 
 Vue.use(VueRouter);
 
@@ -140,6 +141,11 @@ const routes = [{
         path: "/vote/login",
         name: "voteLogin",
         component: VoteLogin
+    },
+    {
+        path: "/vote/votar/:user_id",
+        name: "vote",
+        component: Vote
     },
 ];
 

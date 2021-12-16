@@ -10,16 +10,18 @@
                 <th>Email</th>
                 <th>Birth Date</th>
                 <th>Phone number</th>
+                <th>Votos</th>
                 <!-- <th>Actions</th> -->
             </tr>
             </thead>
             <tbody>
-            <tr v-for="user in candidates" :key="user.id">
-                <td>{{ user.document }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.birth_date }}</td>
-                <td>{{ user.phone_number }}</td>
+            <tr v-for="user in candidates" :key="user['candidate'].id">
+                <td>{{ user['candidate'].document }}</td>
+                <td>{{ user['candidate'].name }}</td>
+                <td>{{ user['candidate'].email }}</td>
+                <td>{{ user['candidate'].birth_date }}</td>
+                <td>{{ user['candidate'].phone_number }}</td>
+                <td>{{ user['res'].TotalVotos }}</td>
             </tr>
             </tbody>
         </table>
@@ -36,12 +38,12 @@
         data() {
             return {
                 candidates: {},
-                date:moment(new Date(2021,11,24)).format('yyyy-MM-D'),
+                date:moment(new Date(2021,11,16)).format('yyyy-MM-D'),
             }
         },
         created() {
             axios
-                .get('http://voting-system.test/api/reporteEleccion/'+this.date)
+                .get('http://voting-system.test/api/reporteEleccionResultados/'+this.date)
                 .then(response => {
                     console.log(this.date)
                     this.candidates = response.data.candidates;

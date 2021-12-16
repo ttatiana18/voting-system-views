@@ -36,7 +36,7 @@
         data() {
             return {
                 candidates: {},
-                date:moment(new Date(2021,11,19)).format('yyyy-MM-D'),
+                date:moment(new Date(2021,11,16)).format('yyyy-MM-D'),
             }
         },
         created() {

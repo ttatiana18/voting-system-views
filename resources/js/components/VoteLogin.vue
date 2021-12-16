@@ -21,6 +21,10 @@
  
 <script>
     export default {
+        props:
+        {
+            user_id:''
+        },
         data() {
             return {
                 user: {
@@ -32,7 +36,7 @@
                 axios
                     .post('http://voting-system.test/api/voto/ingresar', this.user)
                     .then(response => (
-                        this.$router.push({ name: 'home' })
+                        this.$router.push({ name: 'vote', params:{user_id:response.data.id}})
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)
