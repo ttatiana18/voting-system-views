@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group">
                         <label>Photo</label>
-                        <input type="text" class="form-control" v-model="user.photo">
+                        <input type="file" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Phone number</label>
@@ -43,15 +43,23 @@
     export default {
         data() {
             return {
-                user: {}
+                user: {
+                    name : '',
+                    email : '',
+                    document : '',
+                    birth_date : '',
+                    photo: 'aa',
+                    phone_number: '',
+                    password: '',
+                }
             }
         },
-        methods: {
+        methods: { 
             addUser() {
                 axios
                     .post('http://voting-system.test/api/usuarios/crear', this.user)
                     .then(response => (
-                        this.$router.push({ name: 'home' })
+                        this.$router.push({ name: 'users' })
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)

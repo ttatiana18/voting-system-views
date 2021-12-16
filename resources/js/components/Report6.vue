@@ -20,12 +20,6 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.birth_date }}</td>
                 <td>{{ user.phone_number }}</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <router-link :to="{name: 'editUser', params: { id: user.id }}" class="btn btn-success">Edit</router-link>
-                        <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
-                    </div>
-                </td>
             </tr>
             </tbody>
         </table>
@@ -33,29 +27,19 @@
 </template>
  
 <script>
-    export default {
+    export default {  
         data() {
             return {
-                users: []
+                users: {},
             }
         },
         created() {
             axios
-                .get('http://voting-system.test/api/usuarios')
+                .get('http://voting-system.test/api/reporteListadoPromedio')
                 .then(response => {
-                    this.users = response.data.users;
+                    this.users = response.data.votants;
+                    console.log(response.data.votants)
                 });
         },
-        methods: {
-            deleteUser(id) { 
-                axios
-                    .delete('http://voting-system.test/api/usuarios/'+id)
-                    .then(response => {
-                        console.log(response.resp);
-                        let i = this.users.map(data => data.id).indexOf(id);
-                        this.users.splice(i, 1)
-                    });
-            }
-        }
     }
 </script>
