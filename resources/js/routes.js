@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import AllProduct from './components/AllProduct.vue';
-import CreateProduct from './components/CreateProduct.vue';
-import EditProduct from './components/EditProduct.vue';
+import AllUsers from './components/AllUsers.vue';
+import CreateUser from './components/CreateUser.vue';
+import EditUser from './components/EditUser.vue';
 
 
 Vue.use(VueRouter);
@@ -10,17 +10,17 @@ Vue.use(VueRouter);
 const routes = [{
         path: "/",
         name: "home",
-        component: AllProduct
+        component: AllUsers
     },
     {
         path: "/create",
         name: "create",
-        component: CreateProduct
+        component: CreateUser
     },
     {
         path: "/edit:id",
         name: "edit",
-        component: EditProduct
+        component: EditUser
     }
 ];
 
